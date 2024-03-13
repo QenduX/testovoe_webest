@@ -118,13 +118,15 @@
     window.addEventListener('load', function() { // обновление товаров из storage
         const storage = JSON.parse(localStorage.getItem('cart'));
         
-        cartCounter(storage);
-        products.forEach(el => {
-            storage.forEach(prod => {
-                if (prod.id.toLowerCase() === el.id.toLowerCase()) {
-                    el.querySelector('.counter__input').value = prod.count;
-                }
+        if (storage) {
+            cartCounter(storage);
+            products.forEach(el => {
+                storage.forEach(prod => {
+                    if (prod.id.toLowerCase() === el.id.toLowerCase()) {
+                        el.querySelector('.counter__input').value = prod.count;
+                    }
+                })
             })
-        })
+        }
     })
 }
